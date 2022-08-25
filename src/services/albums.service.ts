@@ -4,6 +4,7 @@ import {Cobol, Injected, TypedCobol} from "../internal/types";
 import {Responder} from "../internal/responder";
 import {ReasonPhrases, StatusCodes} from "http-status-codes";
 import {AlbumModelType} from "../types/model.interface";
+import {Sequelize} from "sequelize";
 
 const AlbumModel = require('./../models/AlbumModel')
 
@@ -68,6 +69,7 @@ class AlbumsService extends BaseService {
             }
             const newItem = await this.albumRepository().update({
                 name: cobol.dto.data.name,
+                updated_at: Sequelize.fn('now')
             },
                 {where: {
                     id,

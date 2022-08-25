@@ -1,4 +1,4 @@
-import {DataTypes} from "sequelize";
+import {DataTypes, Sequelize} from "sequelize";
 
 
 const Sequel = require('../db/database').eclipseConnection().client;
@@ -31,10 +31,12 @@ const PostModel = Sequel.define("posts", {
     created_at: {
         field: 'created_at',
         type: DataTypes.DATE,
+        defaultValue: Sequelize.fn('now')
     },
     updated_at: {
         field: 'updated_at',
         type: DataTypes.DATE,
+        defaultValue: Sequelize.fn('now')
     },
 }, {
     timestamps: false,

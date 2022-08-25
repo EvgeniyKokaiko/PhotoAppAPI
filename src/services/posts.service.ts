@@ -6,6 +6,7 @@ import {Responder} from "../internal/responder";
 import {ReasonPhrases, StatusCodes} from "http-status-codes";
 import {PagingData} from "../types";
 import {chainTool} from "../internal/core/index.chain";
+import {Sequelize} from "sequelize";
 
 const PostModel = require('./../models/PostModel')
 
@@ -57,6 +58,7 @@ class PostsService extends BaseService {
                 album_id: cobol.dto.data.album_id,
                 url: file?.filename || cobol.dto.data.url,
                 thumbnail: file?.filename || cobol.dto.data.thumbnail,
+                updated_at: Sequelize.fn('now')
             }
             if (access_token === void 0 || access_token === null)  {
                 return Responder.giveResponse(StatusCodes.BAD_REQUEST, ReasonPhrases.BAD_REQUEST)

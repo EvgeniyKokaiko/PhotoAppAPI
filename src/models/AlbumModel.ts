@@ -1,4 +1,4 @@
-import {DataTypes} from "sequelize";
+import {DataTypes, Sequelize} from "sequelize";
 
 
 const Sequel = require('../db/database').eclipseConnection().client;
@@ -15,14 +15,18 @@ const AlbumModel = Sequel.define("albums", {
         allowNull: false,
         unique: true,
     },
-    createdAt: {
+    created_at: {
         field: 'created_at',
         type: DataTypes.DATE,
+        defaultValue: Sequelize.fn('now')
     },
-    updatedAt: {
+    updated_at: {
         field: 'updated_at',
         type: DataTypes.DATE,
+        defaultValue: Sequelize.fn('now')
     },
+}, {
+    timestamps: false,
 })
 
 module.exports = AlbumModel;
