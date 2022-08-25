@@ -1,0 +1,28 @@
+version: '3.1'
+
+
+services:
+
+  app:
+    image: app:app
+    volumes:
+      - .:/src
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+
+  database:
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: "testApi"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "root"
+    ports:
+      - "5432:5432"
+    volumes:
+      - database-data:/var/lib/postgresql/data
+
+
+volumes:
+  database-data:
