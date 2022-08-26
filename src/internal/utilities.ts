@@ -34,20 +34,9 @@ export function useAllRoutes(app: any, controllers: Array<any>, apiStartURL: str
  * It's loop through a models which should be specified inside root file
  *
  */
-export function useAllModels(models: BaseModel[]) {
-    if (models === void 0 || models === null) {
-        throw new Error('Error corrupted on models syncing!')
-    }
-    models.forEach(async (model) => {
-        try {
-            console.log(`[database]: Model ${model.name} is trying to sync`)
-            model.sync({})
-            console.log(`[database]: Model ${model.name} is synced!`)
-        } catch (e) {
-            console.log('useAllModels ex', e)
-        }
-    })
-}
+
+
+const sleep = (timer: number = 1000) => new Promise((resolve) => setTimeout(resolve, timer))
 
 
 /**

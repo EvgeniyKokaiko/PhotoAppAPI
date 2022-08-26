@@ -6,18 +6,11 @@ import {threadRunner} from "./src/internal/types";
 import {PostsController} from "./src/controllers/posts.controller";
 import {AlbumsController} from "./src/controllers/albums.controller";
 
-const PostModel = require('./src/models/PostModel')
-const AlbumModel = require('./src/models/AlbumModel')
-
-
 class Application extends MorganaApplication {
     constructor(PORT: number, HTTPS: boolean) {
        super(PORT, HTTPS)
     }
 
-    public get models(): any[] {
-        return [AlbumModel, PostModel];
-    }
 
     public get runOnOtherThread(): threadRunner[] {
         return [];

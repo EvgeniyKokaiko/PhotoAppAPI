@@ -40,8 +40,10 @@ const PostModel = Sequel.define("posts", {
     },
 }, {
     timestamps: false,
+    tableName: 'posts',
     });
 
 PostModel.belongsTo(AlbumModel, {foreignKey: 'album_id', onDelete: 'CASCADE'})
+
 
 module.exports = PostModel

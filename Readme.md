@@ -8,7 +8,7 @@
 - PostgreSQL
 - Docker & Docker-Compose
 - Typescript
-
+- Own class-based wrapper
 
 ### To run application:
 

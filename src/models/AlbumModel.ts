@@ -27,6 +27,9 @@ const AlbumModel = Sequel.define("albums", {
     },
 }, {
     timestamps: false,
+    tableName: 'albums',
 })
+
+
 
 module.exports = AlbumModel;

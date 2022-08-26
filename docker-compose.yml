@@ -4,7 +4,7 @@ version: '3.1'
 services:
 
   app:
-    image: app:app
+    image: express-app:app
     volumes:
       - .:/src
     ports:

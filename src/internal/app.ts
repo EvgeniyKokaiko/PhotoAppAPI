@@ -1,4 +1,5 @@
-import {useAllModels, useAllRoutes, useAllThreads} from "./utilities";
+import { useAllRoutes, useAllThreads } from "./utilities";
+import {SyncModels} from "../models";
 
 
 
@@ -34,7 +35,6 @@ export abstract class MorganaApplication {
     }
 
     public abstract get controllers(): any[];
-    public abstract get models(): any[];
     public abstract usings(): void;
     public abstract get runOnOtherThread(): {path: string; data: any}[];
     public abstract get useGlobalURLPath(): string | null;
@@ -43,7 +43,7 @@ export abstract class MorganaApplication {
             await this.usings()
             require('../db/database').createDatabaseConnection()
             useAllRoutes(this._application, this.controllers, this.useGlobalURLPath)
-            useAllModels(this.models)
+            await SyncModels()
             this.appInstance.listen(this._port, async () => {
                 await useAllThreads(this.runOnOtherThread)
                 console.log(`[server]: Server is running at ${this._isHttps ? 'https' : 'http'}://localhost:${this._port}`);
